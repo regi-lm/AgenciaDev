@@ -9,7 +9,7 @@ $('.container-slider').slick({
         slidesToShow: 3,
         slideToScroll: 3,
         autoplay: true,
-        autoplaySpeed: 3000,
+        autoplaySpeed: 10000,
         pauseOnHover: false,
         responsive: [{
                 breakpoint: 768,
@@ -31,3 +31,21 @@ var menuBtn = document.querySelector('.items-menu-mobile i');
                     itemsMenu.classList.add('show');
                 }
 });
+
+function enviarWhatsApp(event) {
+    event.preventDefault(); // Impede o envio padrão do formulário
+
+    const nome = document.getElementById('nome').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const mensagem = document.getElementById('mensagem').value.trim();
+
+    const numeroWhatsApp = '5591940028922'; // Substitua pelo número desejado (com DDI e DDD, sem + ou espaços)
+    const texto = `Olá, meu nome é ${nome} (%0AEmail: ${email})%0A${mensagem}`;
+    const url = `https://wa.me/${numeroWhatsApp}?text=${encodeURI(texto)}`;
+
+    // Abre o WhatsApp com a mensagem
+    window.open(url, '_blank');
+
+    // Limpa os campos do formulário
+    document.getElementById('formContato').reset();
+}
